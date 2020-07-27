@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nico's 3D Printer</title>
+</head>
+<body>
+    <form>
+    <input type = "file" accept=".gcode">
+    <input type = "submit">
+</form>
+<script>
+    const form = document.querySelector("form")
+    form.onsubmit = (e) =>{
+        e.preventDefault()
+        let file = form[0].files[0]
+        fetch("/",{
+            method: "POST",
+            headers:{
+            "Content-Length": file.size
+            },
+            body:file
+        })
+    }
+</script>
+</body>
+</html>
